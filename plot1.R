@@ -1,0 +1,6 @@
+hpc <- read.table("household_power_consumption.txt", header=FALSE, sep=";", na.strings = "?", skip=66637, nrows=2880,colClasses = c("character", "character", "numeric", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"))
+hpc <- list(strptime(paste(hpc$V1,hpc$V2), format="%d/%m/%Y %H:%M:%S"), hpc$V3)
+names(hpc) <- c("DateTime", "GlobalActivePower")
+png("plot1.png")
+hist(hpc$GlobalActivePower, main="Global Active Power", xlab="Global Active Power (kilowatts)", col="red")
+dev.off()
